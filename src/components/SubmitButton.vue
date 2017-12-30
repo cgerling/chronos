@@ -42,4 +42,10 @@ button .content {
   position: relative;
   z-index: 10;
 }
+
+button.center .content {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
 </style>
