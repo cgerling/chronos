@@ -12,9 +12,7 @@
   </card>
 </template>
 <script>
-import Card from '@/components/Card'
 import ProgressBar from '@/components/ProgressBar'
-import Icon from '@/components/Icon'
 
 export default {
   name: 'CategoryCard',
@@ -28,7 +26,7 @@ export default {
       required: true
     }
   },
-  components: { Card, ProgressBar, Icon }
+  components: { ProgressBar }
 }
 </script>
 <style scoped>

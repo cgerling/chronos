@@ -12,11 +12,8 @@
   </nav>
 </template>
 <script>
-import Icon from '@/components/Icon'
-
 export default {
   name: 'Navbar',
-  components: { Icon },
   methods: {
     back () {
       this.$router.go(-1)
