@@ -1,0 +1,77 @@
+<template>
+  <main>
+    <navbar back>New category</navbar>
+    <div class="container">
+      <new-category class="new-category" @update="updateInfo" />
+      <color-picker :colors="color.options" @selected="selectColor" />
+    </div>
+    <div @click="save()">
+      <submit-button class="button center" color="#0F81C7">
+        Finish
+      </submit-button>
+    </div>
+  </main>
+</template>
+<script>
+import ColorPicker from '@/components/ColorPicker'
+import Navbar from '@/components/Navbar'
+import NewCategory from '@/components/NewCategory'
+import SubmitButton from '@/components/SubmitButton'
+
+import Database from '@/services/indexeddb'
+
+export default {
+  name: 'CreateCategory',
+  components: { ColorPicker, Navbar, NewCategory, SubmitButton },
+  data () {
+    return {
+      color: {
+        selected: '',
+        options: ['#ff3b30', '#ff9500', '#ffcc00', '#4cd964', '#5ac8fa', '#007aff', '#5856d6', '#ff2d55']
+      },
+      info: {
+        icon: '',
+        name: '',
+        description: ''
+      }
+    }
+  },
+  methods: {
+    selectColor (color) {
+      this.color.selected = color
+    },
+    updateInfo (info) {
+      this.info = info
+    },
+    save () {
+      Database.connect('chronos')
+        .then(db => Database.add(db, 'category', this.info))
+        .then(() => {
+          this.$router.replace('/')
+        })
+        .catch(console.error.bind(console))
+    }
+  }
+}
+</script>
+<style scoped>
+main {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-category {
+  flex-grow: 1;
+}
+
+.button {
+  font-size: .9em;
+  font-weight: bold;
+}
+</style>
