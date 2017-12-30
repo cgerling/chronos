@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="icon" @click="choose()">
-      <icon :name="selected" />
+      <icon :name="icon" />
     </div>
     <modal title="Choose a icon" :show="showPicker" @close="close">
       <icon-explorer @select="select" />
@@ -12,17 +12,31 @@
 import Modal from '@/components/Modal'
 import IconExplorer from '@/components/IconExplorer'
 
+import { icons } from '@/assets/font/icons'
+
 export default {
   name: 'IconPicker',
   components: { IconExplorer, Modal },
   data () {
     return {
-      selected: 'add',
+      selected: '',
       showPicker: false
+    }
+  },
+  computed: {
+    icon () {
+      const index = Number.parseInt(Math.random() * icons.length)
+      let icon = this.selected || icons[index]
+
+      this.select(icon)
+
+      return icon
     }
   },
   methods: {
     select (iconName) {
+      if (this.selected === iconName) return
+
       this.close()
 
       this.selected = iconName
@@ -40,7 +54,6 @@ export default {
 <style scoped>
 .icon {
   align-items: center;
-  border: 2px solid #2c3e50;
   border-radius: 50%;
   box-sizing: border-box;
   display: flex;
