@@ -28,7 +28,6 @@ body {
   box-sizing: border-box;
   height: 100%;
   padding: 15px;
-  position: relative;
   width: 100%;
 }
 </style>
