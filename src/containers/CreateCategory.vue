@@ -44,8 +44,13 @@ export default {
       this.info = info
     },
     save () {
+      const category = {
+        ...this.info,
+        color: this.color.selected
+      }
+
       Database.connect('chronos')
-        .then(db => Database.add(db, 'category', this.info))
+        .then(db => Database.add(db, 'category', category))
         .then(() => {
           this.$router.replace('/')
         })
