@@ -2,6 +2,7 @@
   <card class="category-card">
     <progress-bar :color="color" />
     <div class="content">
+      <icon :name="icon" />
       <p class="title">{{name}}</p>
       <slot />
     </div>
@@ -24,6 +25,10 @@ export default {
     color: {
       type: String,
       required: true
+    },
+    icon: {
+      type: String,
+      required: true
     }
   },
   components: { ProgressBar }
@@ -40,7 +45,10 @@ export default {
 }
 
 .content {
+  align-items: center;
   box-shadow: 0 2px 10px rgba(100, 100, 100, .5);
+  display: flex;
+  justify-content: center;
 }
 
 .title {
