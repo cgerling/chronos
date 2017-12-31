@@ -39,6 +39,14 @@ function find (db, store, key) {
   })
 }
 
+function findAll (db, store, key, count) {
+  return new Promise((resolve, reject) => {
+    const objectstore = read(db, [store]).objectStore(store)
+    const request = objectstore.getAll(key, count)
+    listenRequest(request, request => resolve(request.target.result), reject)
+  })
+}
+
 function add (db, store, value) {
   return new Promise((resolve, reject) => {
     const objectstore = write(db, [store]).objectStore(store)
@@ -50,5 +58,6 @@ function add (db, store, value) {
 export default {
   connect,
   find,
+  findAll,
   add
 }
