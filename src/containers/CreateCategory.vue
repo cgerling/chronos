@@ -6,9 +6,7 @@
       <color-picker :colors="color.options" @selected="selectColor" />
     </div>
     <div @click="save()">
-      <submit-button class="button center" color="#0F81C7">
-        Finish
-      </submit-button>
+      <submit-button class="button center" color="#0F81C7">Done</submit-button>
     </div>
   </main>
 </template>
