@@ -42,7 +42,7 @@ export default {
   color: #fff;
   display: inline-flex;
   justify-content: center;
-  width: inherit;
+  width: 100%;
 }
 
 .color:first-of-type {
