@@ -9,14 +9,13 @@
   </div>
 </template>
 <script>
-import Modal from '@/components/Modal'
 import IconExplorer from '@/components/IconExplorer'
 
 import { icons } from '@/assets/font/icons'
 
 export default {
   name: 'IconPicker',
-  components: { IconExplorer, Modal },
+  components: { IconExplorer },
   data () {
     return {
       selected: '',

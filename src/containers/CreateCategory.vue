@@ -14,7 +14,6 @@
 </template>
 <script>
 import ColorPicker from '@/components/ColorPicker'
-import Navbar from '@/components/Navbar'
 import NewInfo from '@/components/NewInfo'
 import SubmitButton from '@/components/SubmitButton'
 
@@ -22,7 +21,7 @@ import Database from '@/services/indexeddb'
 
 export default {
   name: 'CreateCategory',
-  components: { ColorPicker, Navbar, NewInfo, SubmitButton },
+  components: { ColorPicker, NewInfo, SubmitButton },
   data () {
     return {
       color: {
