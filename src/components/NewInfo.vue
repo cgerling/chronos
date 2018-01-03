@@ -1,7 +1,7 @@
 <template>
-  <card class="new-category">
-    <div class="main-info">
-      <icon-picker @select="selectIcon" />
+  <card class="new-info">
+    <div class="main">
+      <icon-picker @select="selectIcon" v-if="withIcon" />
       <input class="field name" type="text" placeholder="Name" v-model="name" @blur="update()">
     </div>
     <textarea class="field description" placeholder="Description (optional)" v-model="description" @blur="update()" />
@@ -11,8 +11,13 @@
 import IconPicker from '@/components/IconPicker'
 
 export default {
-  name: 'NewCategory',
+  name: 'NewInfo',
   components: { IconPicker },
+  props: {
+    withIcon: {
+      type: Boolean
+    }
+  },
   data () {
     return {
       icon: '',
@@ -22,11 +27,14 @@ export default {
   },
   methods: {
     update () {
-      this.$emit('update', {
-        icon: this.icon,
+      const info = {
         name: this.name,
         description: this.description
-      })
+      }
+
+      if (this.withIcon) info.icon = this.icon
+
+      this.$emit('update', info)
     },
     selectIcon (iconName) {
       this.icon = iconName
@@ -37,19 +45,19 @@ export default {
 }
 </script>
 <style scoped>
-.new-category {
+.new-info {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 5px;
 }
 
-.new-category .main-info {
+.new-category .main {
   align-items: center;
   display: flex;
 }
 
-.new-category .main-info .name {
+.new-category .main .name {
   text-indent: 0;
   padding-left: .5em;
 }

@@ -2,7 +2,7 @@
   <main>
     <navbar back>New category</navbar>
     <div class="container">
-      <new-category class="new-category" @update="updateInfo" />
+      <new-info class="new-category" @update="updateInfo" with-icon />
       <color-picker :colors="color.options" @selected="selectColor" />
     </div>
     <div @click="save()">
@@ -15,14 +15,14 @@
 <script>
 import ColorPicker from '@/components/ColorPicker'
 import Navbar from '@/components/Navbar'
-import NewCategory from '@/components/NewCategory'
+import NewInfo from '@/components/NewInfo'
 import SubmitButton from '@/components/SubmitButton'
 
 import Database from '@/services/indexeddb'
 
 export default {
   name: 'CreateCategory',
-  components: { ColorPicker, Navbar, NewCategory, SubmitButton },
+  components: { ColorPicker, Navbar, NewInfo, SubmitButton },
   data () {
     return {
       color: {
