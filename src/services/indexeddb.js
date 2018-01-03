@@ -17,17 +17,13 @@ function listenRequest (request, resolve, reject) {
   request.addEventListener('success', resolve)
 }
 
-function connect (database, version) {
+function connect (database, version, createDatabase) {
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open(database, version)
     listenRequest(request, event => {
       resolve(event.target.result)
     }, reject)
-    request.addEventListener('upgradeneeded', event => {
-      const db = event.target.result
-
-      db.createObjectStore('category', { autoIncrement: true })
-    })
+    request.addEventListener('upgradeneeded', createDatabase)
   })
 }
 
