@@ -15,7 +15,7 @@ import ColorPicker from '@/components/ColorPicker'
 import NewInfo from '@/components/NewInfo'
 import SubmitButton from '@/components/SubmitButton'
 
-import Database from '@/services/indexeddb'
+import categoryService from '@/services/categoryService'
 
 export default {
   name: 'CreateCategory',
@@ -46,12 +46,10 @@ export default {
         color: this.color.selected
       }
 
-      Database.connect('chronos')
-        .then(db => Database.add(db, 'category', category))
+      categoryService.add(category)
         .then(() => {
           this.$router.replace('/')
         })
-        .catch(console.error.bind(console))
     }
   }
 }

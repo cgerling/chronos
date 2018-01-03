@@ -5,7 +5,7 @@
 </template>
 <script>
 import CategoryCard from '@/components/CategoryCard'
-import Database from '@/services/indexeddb'
+import categoryService from '@/services/categoryService'
 
 export default {
   name: 'Home',
@@ -15,15 +15,8 @@ export default {
       categories: []
     }
   },
-  methods: {
-    getCategories () {
-      return Database.connect('chronos')
-        .then(db => Database.findAll(db, 'category'))
-        .catch(console.error.bind(console))
-    }
-  },
   created () {
-    this.getCategories().then(categories => {
+    categoryService.getAll().then(categories => {
       this.categories = categories
     })
   }
