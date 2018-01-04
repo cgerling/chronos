@@ -6,10 +6,10 @@
       <p class="title">{{name}}</p>
       <slot />
     </div>
-    <div class="new-task">
+    <router-link class="new-task" tag="div" :to="`/task/new?category=${name}`">
       <icon name="add" />
       Add task
-    </div>
+    </router-link>
   </card>
 </template>
 <script>
