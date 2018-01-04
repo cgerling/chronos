@@ -51,9 +51,18 @@ function add (db, store, value) {
   })
 }
 
+function update (db, store, value, key) {
+  return new Promise((resolve, reject) => {
+    const objectstore = write(db, [store]).objectStore(store)
+    const request = objectstore.put(value, key)
+    listenRequest(request, resolve, reject)
+  })
+}
+
 export default {
   connect,
   find,
   findAll,
-  add
+  add,
+  update
 }
