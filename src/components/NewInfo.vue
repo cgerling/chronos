@@ -60,6 +60,7 @@ export default {
 .new-info .main .name {
   text-indent: 0;
   padding-left: .5em;
+  width: 100%;
 }
 
 .field {
