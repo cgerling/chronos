@@ -48,6 +48,7 @@ export default {
   align-items: center;
   box-shadow: 0 2px 10px rgba(100, 100, 100, .5);
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
