@@ -6,7 +6,9 @@ const version = 1
 function createDatabase (event) {
   const db = event.target.result
 
-  db.createObjectStore('category', { keyPath: 'name' })
+  if (!db.objectStoreNames.contains('category')) {
+    const category = db.createObjectStore('category', { keyPath: 'name' })
+  }
 }
 
 function connect () {
