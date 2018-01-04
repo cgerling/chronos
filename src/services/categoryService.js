@@ -18,8 +18,12 @@ function getAll () {
   return logError(Database.findAll(store))
 }
 
+function update (category) {
+  return logError(Database.update(store, category))
+}
 export default {
   get,
   getAll,
-  add
+  add,
+  update
 }
