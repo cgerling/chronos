@@ -52,12 +52,12 @@ export default {
   padding: 5px;
 }
 
-.new-category .main {
+.new-info .main {
   align-items: center;
   display: flex;
 }
 
-.new-category .main .name {
+.new-info .main .name {
   text-indent: 0;
   padding-left: .5em;
 }
