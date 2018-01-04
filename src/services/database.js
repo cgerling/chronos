@@ -8,6 +8,7 @@ function createDatabase (event) {
 
   if (!db.objectStoreNames.contains('category')) {
     const category = db.createObjectStore('category', { keyPath: 'name' })
+    category.createIndex('tasks', 'tasks', { unique: true, multiEntry: true })
   }
 }
 
