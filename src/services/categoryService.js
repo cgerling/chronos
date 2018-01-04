@@ -10,11 +10,16 @@ function add (value) {
   return logError(Database.add(store, value))
 }
 
+function get (name) {
+  return logError(Database.find(store, name))
+}
+
 function getAll () {
   return logError(Database.findAll(store))
 }
 
 export default {
+  get,
   getAll,
   add
 }
