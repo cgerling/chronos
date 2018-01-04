@@ -31,7 +31,7 @@ function find (db, store, key) {
   return new Promise((resolve, reject) => {
     const objectstore = read(db, [store]).objectStore(store)
     const request = objectstore.get(key)
-    listenRequest(request, request => resolve(request.result), reject)
+    listenRequest(request, request => resolve(request.target.result), reject)
   })
 }
 
