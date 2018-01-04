@@ -27,9 +27,14 @@ function add (store, value) {
   return connect().then(db => IndexedDb.add(db, store, value))
 }
 
+function update (store, value, key) {
+  return connect().then(db => IndexedDb.update(db, store, value, key))
+}
+
 export default {
   name: dbName,
   find,
   findAll,
-  add
+  add,
+  update
 }
