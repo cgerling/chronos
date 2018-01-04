@@ -25,9 +25,24 @@ function getAll () {
 function update (category) {
   return logError(Database.update(store, category))
 }
+
+function addTask (categoryName, task) {
+  return logError(Database.find(store, categoryName).then(category => {
+    const { tasks } = category
+
+    const newCategory = {
+      ...category,
+      tasks: [...tasks, task]
+    }
+
+    return Database.update(store, newCategory)
+  }))
+}
+
 export default {
   get,
   getAll,
   add,
-  update
+  update,
+  addTask
 }
