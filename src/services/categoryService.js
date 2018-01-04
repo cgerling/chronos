@@ -7,7 +7,11 @@ function logError (operation) {
 }
 
 function add (value) {
-  return logError(Database.add(store, value))
+  const category = {
+    ...value,
+    tasks: []
+  }
+  return logError(Database.add(store, category))
 }
 
 function get (name) {
