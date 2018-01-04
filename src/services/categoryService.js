@@ -2,14 +2,16 @@ import Database from './database'
 
 const store = 'category'
 
+function logError (operation) {
+  return operation.catch(console.error.bind(console))
+}
+
 function add (value) {
-  return Database.add(store, value)
-    .catch(console.error.bind(console))
+  return logError(Database.add(store, value))
 }
 
 function getAll () {
-  return Database.findAll(store)
-    .catch(console.error.bind(console))
+  return logError(Database.findAll(store))
 }
 
 export default {
