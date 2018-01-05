@@ -34,10 +34,24 @@ export default {
 }
 </script>
 <style scoped>
+@keyframes grow {
+  from {
+    transform: scale(0);
+    border-radius: 50%;
+  }
+
+  to {
+    transform: scale(1)
+  }
+}
+
 .modal {
+  animation: grow 400ms;
   background: #fff;
   bottom: 0;
+  display: grid;
   left: 0;
+  overflow: hidden;
   position: absolute;
   right: 0;
   top: 0;
@@ -56,6 +70,7 @@ export default {
 }
 
 .modal .body {
+  overflow-y: auto;
   padding: .5em;
 }
 </style>
