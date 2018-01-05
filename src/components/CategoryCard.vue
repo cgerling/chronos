@@ -1,12 +1,10 @@
 <template>
   <card class="category-card">
-    <progress-bar :color="color" />
-    <div class="content">
-      <icon :name="icon" />
-      <p class="title">{{name}}</p>
-      <slot />
-    </div>
-    <router-link class="new-task" tag="div" :to="`/task/new?category=${name}`">
+    <progress-bar :color="category.color" />
+        <icon :name="category.icon" />
+      <p class="title">{{category.name}}</p>
+    </router-link>
+    <router-link class="new-task" tag="div" :to="`/task/new?category=${category.name}`">
       <icon name="add" />
       Add task
     </router-link>
@@ -18,17 +16,14 @@ import ProgressBar from '@/components/ProgressBar'
 export default {
   name: 'CategoryCard',
   props: {
-    name: {
-      type: String,
-      required: true
-    },
-    color: {
-      type: String,
-      required: true
-    },
-    icon: {
-      type: String,
-      required: true
+    category: {
+      type: Object,
+      required: true,
+      validator (value) {
+        const { color, icon, name, tasks } = value
+
+        return color && icon && name && tasks
+      }
     }
   },
   components: { ProgressBar }
