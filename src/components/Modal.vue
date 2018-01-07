@@ -50,6 +50,7 @@ export default {
   background: #fff;
   bottom: 0;
   display: grid;
+  grid-template-rows: 10% 90%;
   left: 0;
   overflow: hidden;
   position: absolute;
