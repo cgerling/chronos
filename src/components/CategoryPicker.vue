@@ -46,8 +46,8 @@ export default {
 }
 
 .category .name {
+  flex-grow: 1;
   margin: 0;
   margin-left: .5em;
-  flex-grow: 1;
 }
 </style>
