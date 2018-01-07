@@ -1,21 +1,32 @@
 <template>
-  <card class="category">
-    <icon name="copyright" />
-    <p class="name">
-      {{category}}
-    </p>
-  </card>
+  <div>
+    <div @click="toggleModal()">
+      <card class="category">
+        <icon :name="selected.icon" />
+        <p class="name">
+          {{selected.name}}
+        </p>
+      </card>
+    </div>
+    <modal title="Categories" :show="showModal" @close="toggleModal()" @select="select">
+      <category-explorer :selected="actual" :categories="options" />
+    </modal>
+  </div>
 </template>
 <script>
 import Card from '@/components/Card'
-import categoryService from '@/services/categoryService'
+import CategoryExplorer from '@/components/CategoryExplorer'
 
 export default {
   name: 'CategoryPicker',
-  components: { Card },
+  components: { Card, CategoryExplorer },
   props: {
-    category: {
-      type: String,
+    actual: {
+      type: Object,
+      required: true
+    },
+    options: {
+      type: Array,
       required: true
     }
   },
@@ -25,16 +36,23 @@ export default {
         icon: '',
         name: ''
       },
-      categories: []
+      showModal: false
     }
   },
-  created () {
-    categoryService.getAll().then(categories => {
-      this.categories = categories.map(category => ({
-        icon: category.icon,
-        name: category.name
-      }))
-    })
+  methods: {
+    toggleModal () {
+      this.showModal = !this.showModal
+    },
+    select (category) {
+      this.selected = category
+
+      this.toggleModal()
+    }
+  },
+  watch: {
+    actual (val) {
+      this.selected = val
+    }
   }
 }
 </script>
@@ -49,5 +67,6 @@ export default {
   flex-grow: 1;
   margin: 0;
   margin-left: .5em;
+  text-transform: capitalize;
 }
 </style>
