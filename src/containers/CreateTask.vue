@@ -26,10 +26,21 @@ import categoryService from '@/services/categoryService'
 
 export default {
   name: 'CreateTask',
+  props: {
+    category: {
+      type: String,
+      required: true
+    }
+  },
   components: { CategoryPicker, SubmitButton, NewInfo, PriorityPicker, SetReminder, SetDuration },
   data () {
     return {
-      category: '',
+      categories: {
+        actual: {
+          name: '',
+          icon: ''
+        }
+      },
       name: '',
       description: '',
       priority: {
@@ -76,7 +87,12 @@ export default {
     }
   },
   created () {
-    this.category = this.$route.query.category
+    categoryService.get(this.category).then(({ name, icon }) => {
+      this.categories.actual = {
+        name,
+        icon
+      }
+    })
   }
 }
 </script>

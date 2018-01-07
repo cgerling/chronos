@@ -23,9 +23,7 @@ export default new Router({
       path: '/task/new',
       name: 'Create Task',
       component: CreateTask,
-      props: {
-        category: true
-      }
+      props: (route) => ({ category: route.query.category })
     }
   ]
 })
