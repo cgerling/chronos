@@ -2,7 +2,7 @@
   <main>
     <navbar back>New task</navbar>
     <div class="container">
-      <category-picker :category="category" />
+      <category-picker :actual="categories.actual" :options="categories.all" />
       <new-info class="info" @update="update" />
       <priority-picker :priorities="priority.options" />
       <div class="options" style="display: none;">
@@ -39,7 +39,8 @@ export default {
         actual: {
           name: '',
           icon: ''
-        }
+        },
+        all: []
       },
       name: '',
       description: '',
@@ -92,6 +93,13 @@ export default {
         name,
         icon
       }
+    })
+
+    categoryService.getAll().then(categories => {
+      this.categories.all = categories.map(category => ({
+        icon: category.icon,
+        name: category.name
+      }))
     })
   }
 }
