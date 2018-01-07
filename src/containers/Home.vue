@@ -1,6 +1,6 @@
 <template>
   <main class="container">
-    <category-card v-for="category in categories" :key="category.name" :name="category.name" :color="category.color" :icon="category.icon" />
+    <category-card v-for="category in categories" :key="category.name" :category="category" />
     <add-category />
   </main>
 </template>
