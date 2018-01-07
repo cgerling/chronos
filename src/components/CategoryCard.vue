@@ -68,11 +68,12 @@ export default {
 }
 
 .title {
-  font-size: 1.2em;
+  font-size: 1.5em;
   font-weight: bold;
   margin: 0;
   padding: 5px;
   text-align: center;
+  text-transform: capitalize;
 }
 
 .new-task {
