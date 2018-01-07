@@ -1,6 +1,6 @@
 <template>
   <card class="category-card">
-    <progress-bar :color="category.color" />
+    <progress-bar :color="category.color" :fraction="tasksDone.length" :total="category.tasks.length" />
     <router-link class="content" :to="`/category/${category.name}`" tag="div">
       <div class="info">
         <icon :name="category.icon" />
