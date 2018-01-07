@@ -4,27 +4,29 @@
   </div>
 </template>
 <script>
+import { asPercent, percentageOf } from '@/services/percentService'
+
 export default {
   name: 'ProgressBar',
   props: {
-    percentage: {
+    fraction: {
       type: Number,
-      default: 0
+      required: true
+    },
+    total: {
+      type: Number,
+      required: true
     },
     color: {
       type: String,
       required: true
     }
   },
-  methods: {
-    asPercent (number) {
-      return `${number}%`
-    }
-  },
   computed: {
     width () {
-      const widthPercent = 100 - this.percentage
-      return this.asPercent(widthPercent)
+      const widthPercent = 100 - percentageOf(this.fraction, this.total)
+
+      return asPercent(widthPercent)
     }
   }
 }
