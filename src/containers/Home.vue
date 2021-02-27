@@ -1,7 +1,13 @@
 <template>
   <main class="container">
-    <category-card v-for="category in categories" :key="category.name" :category="category" />
-    <add-category />
+    <flickity :options="sliderOptions">
+      <div class="carousel-cell" v-for="category in categories" :key="category.name">
+        <category-card :category="category" />
+      </div>
+      <div class="carousel-cell">
+        <add-category />
+      </div>
+    </flickity>
   </main>
 </template>
 <script>
@@ -14,7 +20,13 @@ export default {
   components: { CategoryCard, AddCategory },
   data () {
     return {
-      categories: []
+      categories: [],
+      sliderOptions: {
+        pageDots: false,
+        resize: true,
+        prevNextButtons: false,
+        wrapAround: true
+      }
     }
   },
   created () {
